@@ -6,5 +6,5 @@ useDefault = true
 [[allowlists]]
 description = "Ignore only secret.txt"
 paths = [
-  '''(^|/)secret\.txt$'''
+  '''(^|/)scret\.txt$'''
 ]
