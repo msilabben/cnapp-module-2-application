@@ -2,6 +2,6 @@
 
 Workshop - sikker koding. 
 Bl.a. med signerte commits og andre sikkerhetsmekanismer.
-Testing av signert commit.
+Testing av signert commit etter å ha lagt inn kommentar.
 
 Fork for Andreas.
