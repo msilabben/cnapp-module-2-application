@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   pre-commit:
-    if: false # Remove this to enable pre-commit
+    if: true # Remove this to enable pre-commit
     runs-on: ubuntu-22.04
     name: Run pre-commit
     steps:
@@ -18,7 +18,7 @@ jobs:
     - uses: pre-commit/action@v3.0.1
 
   gitleaks:
-    if: false # Remove this to enable gitleaks
+    if: true # Remove this to enable gitleaks
     uses: ./.github/workflows/gitleaks.yml
 
   backend-tests:
