@@ -42,6 +42,17 @@ Si ifra til fasilitator hvis dere møter på problemer.
 
 
 ### Signerte commits
+**Commit som noen andre**
+1. I terminalen, sjekk loggen til git (`git log`) for se om det er en bruker du kan commite for.
+2. Kopier brukernes nav og epost, og oppdater din egen git config med det nye navnet og eposten: 
+- `git config user.email "43639886+collinlokken@users.noreply.github.com"`
+- `git config user.name "Christopher Collin Løkken"`
+3. Gjør en vilkårlig forandring, legg de til og commit dem, og push til GitHub. 
+4. Gå til GitHub og se på commiten, og legg merke til hvilken bruker som committet forandringene. 
+5. Gå tilbake til codespaces, og sett eposten og navnet til ditt eget igjen. 
+
+**Signer commit**
+
 1. I terminal, skriv inn `ssh-keygen -t ed25519 -C "navn@epost.com"`. 
 2. Kopier den offentlige nøkkelen. Det kan gjøres med å printe ut innholdet i filen og kopiere den. Print ut innholdet med `cat /home/vscode/.ssh/id_ed25519.pub` (pass på at filnavnet er korrekt) og legg den til på GitHub brukeren din. 
     - Inne på GitHub, trykk på ditt brukerikon og velg "settings". 
