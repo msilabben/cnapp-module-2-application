@@ -22,7 +22,7 @@ jobs:
     uses: ./.github/workflows/gitleaks.yml
 
   backend-tests:
-    if: false # Remove this to enable pytest
+    if: true # Remove this to enable pytest
     uses: ./.github/workflows/pytest.yml
     with:
       working-directory: backend
