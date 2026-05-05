@@ -49,7 +49,6 @@ jobs:
           category: semgrep
 
   trivy:
-    if: false # Remove this to enable SAST/SCA with trivy
     runs-on: ubuntu-22.04
     container:
       image: aquasec/trivy:0.70.0
