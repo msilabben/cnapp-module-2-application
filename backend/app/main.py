@@ -10,6 +10,7 @@ def get_version() -> str:
     except PackageNotFoundError:
         return "0.0.0-dev"
 
+# Create app
 def create_app():
     app = FastAPI(title="Simple FastAPI API", version=get_version())
 
