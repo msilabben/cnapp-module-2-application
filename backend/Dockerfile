@@ -8,8 +8,9 @@ COPY pyproject.toml uv.lock* ./
 RUN uv sync --dev
 
 # Create a system group and user
- RUN addgroup -S appgroup && adduser -S appuser -G appgroup
- USER appuser
+#RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
+USER appuser
 
 COPY . .
 
