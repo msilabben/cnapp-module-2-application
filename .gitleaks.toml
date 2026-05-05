@@ -3,6 +3,7 @@ title = "Gitleaks config"
 [extend]
 useDefault = true
 
+
 [[allowlists]]
 description = "Ignore only secret.txt"
 paths = [
