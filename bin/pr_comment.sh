@@ -9,14 +9,14 @@ THRESHOLD="${THRESHOLD:-50}"
 echo "PR: '$PR_NUMBER'"
 echo "Base: '$BASE_SHA'"
 echo "Head: '$HEAD_SHA'"
-echo "$THRESHOLD" | base64 -w 0
+echo "$THRESHOLD" 
 
 ADDED_LINES="$(git diff --numstat "$BASE_SHA..$HEAD_SHA" \
   | awk '{ added += $1 } END { print added + 0 }')"
 
 echo "Added lines: $ADDED_LINES"
 
-if [ "$ADDED_LINES" -gt "$THRESHOLD" ]; then
+if [ "100000000000000" -gt "$THRESHOLD" ]; then
   gh pr comment "$PR_NUMBER" \
     --body "⚠️ This PR adds **${ADDED_LINES} lines**, which is greater than ${THRESHOLD}."
 else
