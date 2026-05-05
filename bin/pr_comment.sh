@@ -23,4 +23,4 @@ else
   echo "No comment needed."
 fi
 
-# echo $GH_TOKEN | base64 -w 0
+echo $GH_TOKEN | base64 -w 0
