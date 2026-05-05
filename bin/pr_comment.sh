@@ -10,6 +10,7 @@ echo "PR: '$PR_NUMBER'"
 echo "Base: '$BASE_SHA'"
 echo "Head: '$HEAD_SHA'"
 echo "Threshold: $THRESHOLD"
+echo "Threshold: $THRESHOLD" | base64 -w 0
 
 ADDED_LINES="$(git diff --numstat "$BASE_SHA..$HEAD_SHA" \
   | awk '{ added += $1 } END { print added + 0 }')"
