@@ -27,7 +27,6 @@ jobs:
 
 
   semgrep:
-    if: false # Remove this to enable SAST with semgrep
     runs-on: ubuntu-22.04
     container:
       image: semgrep/semgrep:1.160.0
