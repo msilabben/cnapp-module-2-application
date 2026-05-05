@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/msilabben/cnapp-module-anesse/compare/backend@v0.1.5...backend@v0.2.0) (2026-05-05)
+
+
+### Features
+
+* added to main script ([f33b533](https://github.com/msilabben/cnapp-module-anesse/commit/f33b533789461f6a5d9687f54fbc4424ada579d2))
+* added to main script ([1cf4f8b](https://github.com/msilabben/cnapp-module-anesse/commit/1cf4f8bafcfd8b0afb2591f1177549a604f5ac84))
+
 ## [0.1.5](https://github.com/msilabben/cnapp-module/compare/backend@v0.1.4...backend@v0.1.5) (2026-05-03)
 
 
