@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.2](https://github.com/msilabben/cnapp-module-tobias/compare/backend@v0.2.1...backend@v0.2.2) (2026-05-05)
+
+
+### Bug Fixes
+
+* now fixed? thanks copilot ([a4ded6c](https://github.com/msilabben/cnapp-module-tobias/commit/a4ded6c900a6ab229df1d78c388b44fbe5c66241))
+* unbroke dockerfile again. What is wrong ([4b319d0](https://github.com/msilabben/cnapp-module-tobias/commit/4b319d0e7eb3acacd07e0408465ea453072bd2b0))
+
 ## [0.2.1](https://github.com/msilabben/cnapp-module-tobias/compare/backend@v0.2.0...backend@v0.2.1) (2026-05-05)
 
 
