@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.6](https://github.com/msilabben/cnapp-module_Knut/compare/backend@v0.1.5...backend@v0.1.6) (2026-05-05)
+
+
+### Bug Fixes
+
+* la inn kommentar i main.py ([321f9a0](https://github.com/msilabben/cnapp-module_Knut/commit/321f9a04c39dfd47eb85d83ebdb4f9b6d0c8d82c))
+* la inn kommentar i main.py ([b794b2f](https://github.com/msilabben/cnapp-module_Knut/commit/b794b2f3bd70704de946df2a0452a1bbe064824d))
+
 ## [0.1.5](https://github.com/msilabben/cnapp-module/compare/backend@v0.1.4...backend@v0.1.5) (2026-05-03)
 
 
