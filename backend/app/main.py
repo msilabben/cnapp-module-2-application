@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 def get_version() -> str:
-    # function to get version
     try:
         return version("backend")
     except PackageNotFoundError:
