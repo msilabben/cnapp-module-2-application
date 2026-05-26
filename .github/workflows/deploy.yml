@@ -1,0 +1,144 @@
+name: Deploy to AKS
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to apply"
+        type: choice
+        required: true
+        default: dev
+        options:
+          - dev
+          - prod
+
+permissions:
+  contents: read
+  id-token: write
+
+
+jobs:
+  deploy-dev:
+    name: AKS deploy dev
+    runs-on: ubuntu-latest
+    environment: dev
+
+    defaults:
+      run:
+        working-directory: environments/dev
+
+    env:
+      ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      ARM_TENTANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
+      AKS_CLUSTER: ${{ vars.AKS_CLUSTER }}
+      ACR_NAME: ${{ vars.ACR_NAME }}
+      IMAGE_NAME_BACKEND: ${{ vars.IMAGE_NAME_BACKEND }}
+      IMAGE_NAME_FRONTEND: ${{ vars.IMAGE_NAME_FRONTEND }}
+      VERSION: ${{ vars.VERSION }}
+      AGFC_NAME: ${{ vars.AGFC_NAME }}
+      AGFC_FRONTEND_NAME: ${{ vars.AGFC_FRONTEND_NAME }}
+
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v4
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Set AKS context
+        run: |
+          az aks get-credentials \
+            --resource-group "$RESOURCE_GROUP" \
+            --name "$AKS_CLUSTER" \
+            --overwrite-existing
+
+      - name: Deploy images for app 
+        run: |
+          kubectl create namespace cnapp
+
+          IMAGE="${ACR_NAME}.azurecr.io/${IMAGE_NAME_BACKEND}:${VERSION}"
+
+          kubectl create deployment backend \
+            --namespace cnapp \
+            --image "$IMAGE" \
+            --port 8000
+               
+          kubectl expose deployment backend \
+            --namespace cnapp \
+            --name backend \
+            --port 8000 \
+            --target-port 8000 \
+            --type ClusterIP
+
+          IMAGE="${ACR_NAME}.azurecr.io/${IMAGE_NAME_FRONTEND}:${VERSION}"
+
+          kubectl create deployment backend \
+            --namespace cnapp \
+            --image "$IMAGE" \
+            --port 3000
+            
+          kubectl expose deployment frontend \
+            --namespace cnapp \
+            --name frontend \
+            --port 3000 \
+            --target-port 3000 \
+            --type ClusterIP
+
+      - name: Curl test
+        run: |
+          kubectl run curl-test \
+            --namespace cnapp \
+            --rm -it \
+            --image=curlimages/curl \
+            --restart=Never \
+            -- sh
+
+          curl -v http://frontend:3000
+
+      - name: Get App gw ID
+        run: |
+          AGFC_ID=$(az network alb show \
+            --resource-group $RESOURCE_GROUP \
+            --name $AGFC_NAME \
+            --query id \
+            --output tsv)
+
+          echo $AGFC_ID
+          echo $AGFC_FRONTEND_NAME
+    
+      - name: Create ingress for app
+        run: |
+          kubectl apply -f - <<EOF
+          apiVersion: networking.k8s.io/v1
+          kind: Ingress
+          metadata:
+            name: cnapp-ingress
+            namespace: cnapp
+            annotations:
+              alb.networking.azure.io/alb-id: $AGFC_ID
+              alb.networking.azure.io/alb-frontend: $AGFC_FRONTEND_NAME
+          spec:
+            ingressClassName: azure-alb-external
+            rules:
+            - http:
+                paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                      name: frontend
+                      port:
+                        number: 3000
+          EOF
+
+          kubectl get ingress -n cnapp 
+          
