@@ -3,6 +3,10 @@ name: Deploy to AKS
 on:
   push:
     branches: [main]
+    paths:
+      - "**/*.tf"
+      - "**/*.tfvars"
+      - ".github/workflows/*.yml"
 
   workflow_dispatch:
     inputs:
@@ -115,30 +119,5 @@ jobs:
           echo $AGFC_ID
           echo $AGFC_FRONTEND_NAME
     
-      - name: Create ingress for app
-        run: |
-          kubectl apply -f - <<EOF
-          apiVersion: networking.k8s.io/v1
-          kind: Ingress
-          metadata:
-            name: cnapp-ingress
-            namespace: cnapp
-            annotations:
-              alb.networking.azure.io/alb-id: $AGFC_ID
-              alb.networking.azure.io/alb-frontend: $AGFC_FRONTEND_NAME
-          spec:
-            ingressClassName: azure-alb-external
-            rules:
-            - http:
-                paths:
-                - path: /
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: frontend
-                      port:
-                        number: 3000
-          EOF
 
-          kubectl get ingress -n cnapp 
           
