@@ -64,7 +64,7 @@ jobs:
 
       - name: Deploy images for app 
         run: |
-          kubectl apply namespace cnapp
+          kubectl apply namespace cnapp --dry-run=client -o yaml | kubectl apply -f -
 
           IMAGE="${ACR_NAME}.azurecr.io/${IMAGE_NAME_BACKEND}:${VERSION}"
 
@@ -72,6 +72,7 @@ jobs:
             --namespace cnapp \
             --image "$IMAGE" \
             --port 8000
+            --dry-run=client -o yaml | kubectl apply -f -
                
           kubectl expose deployment backend \
             --namespace cnapp \
@@ -86,6 +87,7 @@ jobs:
             --namespace cnapp \
             --image "$IMAGE" \
             --port 3000
+            --dry-run=client -o yaml | kubectl apply -f -
             
           kubectl expose deployment frontend \
             --namespace cnapp \
