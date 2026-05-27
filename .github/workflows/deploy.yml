@@ -102,12 +102,13 @@ jobs:
         run: |
           kubectl run curl-test \
             --namespace cnapp \
-            --rm -it \
+            --rm \
+            --attach \
             --image=curlimages/curl \
             --restart=Never \
-            -- sh
+            --command -- \
+            curl -v http://frontend:3000
 
-          curl -v http://frontend:3000
 
       - name: Get App gw ID
         run: |
