@@ -30,9 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
 
-    defaults:
-      run:
-        working-directory: environments/dev
 
     env:
       ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
