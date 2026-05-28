@@ -35,11 +35,11 @@ permissions:
 
 
 jobs:
-  deploy-dev:
-    name: AKS deploy dev
-    if: github.event_name == 'workflow_dispatch' && inputs.environment == 'dev'
+  deploy:
+    name: AKS deploy
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    environment: dev
+    environment: ${{ inputs.environment }}
 
 
     env:
