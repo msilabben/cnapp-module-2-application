@@ -45,7 +45,7 @@ jobs:
 
 
       - name: Upload SBOM to release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ github.ref_name }}
           files: sbom-${{ env.COMPONENT }}-${{ github.ref_name }}.json
