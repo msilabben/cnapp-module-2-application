@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/msilabben/cnapp-module-2-application/compare/backend@v0.2.0...backend@v0.2.1) (2026-05-30)
+
+
+### Bug Fixes
+
+* id token write ([3d9d4e5](https://github.com/msilabben/cnapp-module-2-application/commit/3d9d4e503f69bc46c5f78d04bca899947ef7453b))
+
 ## [0.2.0](https://github.com/msilabben/cnapp-module-2-application/compare/backend@v0.1.7...backend@v0.2.0) (2026-05-30)
 
 
