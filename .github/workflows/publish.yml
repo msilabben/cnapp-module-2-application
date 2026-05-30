@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   packages: write
+  id-token: write
 
 jobs:
   sbom:
@@ -59,8 +60,6 @@ jobs:
       image-name: backend
       context: backend
       dockerfile: Dockerfile
-    permissions:
-      id-token: write
     secrets: inherit
 
   frontend:
@@ -70,6 +69,4 @@ jobs:
       image-name: frontend
       context: frontend
       dockerfile: Dockerfile
-    permissions:
-      id-token: write
     secrets: inherit
