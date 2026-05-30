@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-22.04
     name: Run pre-commit
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     - uses: actions/setup-python@v3
     - uses: pre-commit/action@v3.0.1
 
@@ -35,7 +35,7 @@ jobs:
     container:
       image: semgrep/semgrep:1.160.0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Run Semgrep
         run: semgrep scan --sarif --sarif-output=semgrep_results.sarif
@@ -58,7 +58,7 @@ jobs:
     container:
       image: aquasec/trivy:0.70.0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Run Trivy
         run: trivy fs --format sarif -o trivy_results.sarif --scanners vuln,config,secret,license .
@@ -82,7 +82,7 @@ jobs:
     container:
       image: openpolicyagent/conftest:v0.59.0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Download SARIF artifacts
         uses: actions/download-artifact@v4
