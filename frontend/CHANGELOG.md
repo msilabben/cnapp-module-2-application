@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/msilabben/cnapp-module-2-application/compare/frontend@v1.0.4...frontend@v1.0.5) (2026-05-30)
+
+
+### Bug Fixes
+
+* add id-token write for github fic ([c5f578b](https://github.com/msilabben/cnapp-module-2-application/commit/c5f578bac8f9b2d6fd1743ef8d51e580144ff06c))
+* id write on parent build job ([4859219](https://github.com/msilabben/cnapp-module-2-application/commit/48592196e601f5f67c0285ea1abc180d61225da5))
+
 ## [1.0.4](https://github.com/msilabben/cnapp-module-2-application/compare/frontend@v1.0.3...frontend@v1.0.4) (2026-05-30)
 
 
