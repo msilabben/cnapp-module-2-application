@@ -1,0 +1,42 @@
+name: test azure
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  id-token: write
+  contents: read
+
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Print Azure client ID from GitHub secret
+        run: |
+          echo "Azure Client ID from GitHub secret: ${{ secrets.THEATESTER_CLIENT_ID }}"
+
+      - name: Login to Azure with OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.THEATESTER_CLIENT_ID }}
+          tenant-id: ${{ secrets.THEATESTER_TENANT_ID }}
+          subscription-id: ${{ secrets.THEATESTER_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Get secret from Azure Key Vault
+        id: get_secret
+        run: |
+          SECRET_VALUE=$(az keyvault secret show \
+            --vault-name "kv-theatester" \
+            --name "secret-theatester" \
+            --query value \
+            -o tsv)
+
+          echo "::add-mask::$SECRET_VALUE"
+          echo "MY_SECRET=$SECRET_VALUE" >> "$GITHUB_ENV"
+
+      - name: Use the Key Vault secret
+        run: |
+          echo "Secret was fetched from Key Vault"
