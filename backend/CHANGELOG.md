@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/msilabben/cnapp-module-2-application/compare/backend@v0.2.1...backend@v0.2.2) (2026-05-30)
+
+
+### Bug Fixes
+
+* push images to both environment acr ([293a6fa](https://github.com/msilabben/cnapp-module-2-application/commit/293a6fa5b8d7277dc6fd9c045295393dbc50a21e))
+
 ## [0.2.1](https://github.com/msilabben/cnapp-module-2-application/compare/backend@v0.2.0...backend@v0.2.1) (2026-05-30)
 
 
