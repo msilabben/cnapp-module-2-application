@@ -17,7 +17,7 @@ on:
         required: true
         default: v1.0.0
       backend_image_version: 
-        description: "Frontend image version to deploy"
+        description: "Backend image version to deploy"
         type: string
         required: true
         default: v1.0.0
