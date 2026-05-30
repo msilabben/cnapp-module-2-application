@@ -14,7 +14,7 @@ export default function App() {
     fetch(`/api/message`)
       .then(async (res) => {
         if (!res.ok) {
-          throw new Error(`API request failed with ${res.status}`)
+          throw new Error(`API request failed with status: ${res.status}`)
         }
         return (await res.json()) as ApiResponse
       })
